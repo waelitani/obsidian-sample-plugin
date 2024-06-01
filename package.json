@@ -1,14 +1,14 @@
 {
-  "name": "your-plugin-name",
+  "name": "task-dependency-graph",
   "version": "1.0.0",
-  "description": "Your plugin description",
+  "description": "This Task Dependency Graph plugin for Obsidian enables the visualization and interactive defintion of task dependencies.",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
     "build": "rollup --config rollup.config.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wael Itani",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",

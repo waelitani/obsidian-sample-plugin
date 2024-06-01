@@ -1,4 +1,4 @@
-import { App, Modal, Plugin, PluginSettingTab, Setting, TFile } from 'obsidian';
+import { App, Modal, Plugin, PluginSettingTab, Setting, TFile, ButtonComponent } from 'obsidian';
 import { DataSet, Network, Edge, Node, Options, Data } from 'vis-network/standalone';
 
 interface Task {
@@ -54,6 +54,13 @@ export default class MyPlugin extends Plugin {
     modal.contentEl.appendChild(container);
 
     modal.containerEl.style.opacity = String(this.settings.opacity);
+
+    // Add a refresh button
+    const refreshButton = new ButtonComponent(modal.contentEl);
+    refreshButton.setButtonText('Refresh');
+    refreshButton.onClick(() => {
+      this.showTaskDependencyGraph();
+    });
 
     this.renderGraph(container, tasks);
 
