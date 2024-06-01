@@ -147,6 +147,15 @@ export default class MyPlugin extends Plugin {
           callback(edgeData);
           this.updateTaskDependency(edgeData.from, edgeData.to);
         },
+        editEdge: (edgeData: { id?: string; from: string; to: string }, callback: (edgeData: { from: string; to: string } | null) => void) => {
+          if (edgeData.from === edgeData.to) {
+            alert('Cannot create self-dependency');
+            callback(null);
+            return;
+          }
+          callback(edgeData);
+          this.updateTaskDependency(edgeData.from, edgeData.to);
+        },
       },
     };
 
@@ -157,6 +166,11 @@ export default class MyPlugin extends Plugin {
         const nodeId = params.nodes[0];
         this.toggleTaskCompletion(nodeId);
       }
+    });
+
+    // Enable the addEdgeMode when the graph is double-clicked
+    this.network.on('doubleClick', () => {
+      this.network?.addEdgeMode();
     });
   }
 
